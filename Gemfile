@@ -36,7 +36,6 @@ end
 
 # TODO test gems
 
-group :staging, :production do
-  gem 'unicorn', '~> 4.9.0'
+group :production do
+  gem 'rails_12factor'
 end
-

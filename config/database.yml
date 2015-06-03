@@ -19,11 +19,12 @@ test:
   host: localhost
   
 production:
-  adapter: mysql2
+  adapter: postgresql
   encoding: utf8
   reconnect: false
-  database: gps_production
+  database: d186o9g743lklr
   pool: 5
-  username: root
-  password:
-  host: localhost
+  username: ulpolszxohvgja
+  password: OTrgzAODiqtEAnRwEd9c_NV49-
+  host: ec2-54-235-134-167.compute-1.amazonaws.com
+  port: 5432

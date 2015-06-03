@@ -37,5 +37,6 @@ end
 # TODO test gems
 
 group :production do
+  gem 'pg'
   gem 'rails_12factor'
 end

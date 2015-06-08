@@ -7,6 +7,7 @@ gem 'mysql2'
 
 gem 'uglifier', '>= 1.3.0'
 gem "mail-iso-2022-jp", '~> 2.0.0'
+gem 'slack-api'
 
 # Asset related gems
 gem 'jquery-rails'

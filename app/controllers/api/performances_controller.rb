@@ -46,7 +46,7 @@ class Api::PerformancesController < Api::Base
         end
         
         wav.force_encoding('utf-8')
-        path = Rails.root.join("sox-14.4.2/play -").to_s
+        path = "/Users/WataruSato/Downloads/sox-14.4.2/play -"
         Open3.capture3(path, stdin_data: wav)
       end
 

@@ -47,7 +47,7 @@ class Api::PerformancesController < Api::Base
         if Rails.env.development?
 
         else
-          Open3.capture3("/Users/WataruSato/work/m3/sox/play -", :stdin_data=>wav)
+          #Open3.capture3("/Users/WataruSato/work/m3/sox/play -", :stdin_data=>wav)
         end
       end
 

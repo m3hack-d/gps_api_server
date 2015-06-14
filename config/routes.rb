@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   root to: 'top#index'
 
   namespace :api do
-    resources :performances
+    resources :performances do
+      get :callback, on: :collection
+    end
   end
 
   namespace :admin do

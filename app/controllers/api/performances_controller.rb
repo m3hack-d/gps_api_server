@@ -7,7 +7,7 @@ class Api::PerformancesController < Api::Base
     render json: { result: "OK" }
     #    Slack.chat_postMessage(text: "この内容が送られています。#{params}", username: 'Push Notification', channel: '#general')
     #    PerformanceMailer.send_information.deliver_now
-    
+
     begin
       twcli = Twitter::REST::Client.new do |config|
         config.consumer_key = 'QXt7GEOi8JPMOLfotgnBvxDZ5'
@@ -15,7 +15,7 @@ class Api::PerformancesController < Api::Base
         config.access_token = '280897853-pI0oudWDoSBYfAYGhCuyEaiRfZM7qD0nGz7KdbSo'
         config.access_token_secret = 'EWEylShpEDBC6Hs46PnVzxHkKg4a1StAGEwqJhO25B5tN'
       end
-      
+
       vt = VoiceTextAPI.new('wc3vvzk2215jna4b')
 
       twcli.home_timeline({"count"=>200}).each do |tweet|
@@ -43,9 +43,9 @@ class Api::PerformancesController < Api::Base
         else
           wav = vt.tts(text, :"#{speaker}",emotion: :"#{emotion}", emotion_level: "#{emolevel}")
         end
-        
+
         if Rails.env.development?
-          
+
         else
           Open3.capture3("/Users/WataruSato/work/m3/sox/play -", :stdin_data=>wav)
         end
@@ -54,6 +54,10 @@ class Api::PerformancesController < Api::Base
     rescue
       print "RuntimeError: ", $!, "\n";
     end
-    
+
+  end
+
+  def callback
+    render text: "OK"
   end
 end

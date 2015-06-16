@@ -22,7 +22,7 @@ class Api::PerformancesController < Api::Base
 
       twcli.home_timeline({"count"=>1}).each do |tweet|
         speaker = ["haruka", "hikari", "takeru"][rand(3)]
-        text = "#{tweet.text}" + "怒!"
+        text = "#{tweet.text}"
 
         if /[!！]/ =~ text then
           emolevel = "2"
@@ -46,7 +46,7 @@ class Api::PerformancesController < Api::Base
           @wav = vt.tts(text, :"#{speaker}",emotion: :"#{emotion}", emotion_level: "#{emolevel}")
         end
         
-        f = File.open("public/videos/hoge.wav", "wb")
+        f = File.open("public/audios/hoge.wav", "wb")
         f.write(@wav)
         f.close
       end

@@ -7,15 +7,15 @@ $(document).ready(function () {
                 if (json.result) {
                     audio = new Audio("/audios/hoge.wav");
                     audio.play();
-                    setTimeout(function () {
-                        $.ajax({
-                            type: "DELETE",
-                            url: "/api/performances/delete_file",
-                            success: function () {
-                                console.log("ok");
-                            }
-                        });
-                    }, 3000);
+//                    setTimeout(function () {
+//                        $.ajax({
+//                            type: "DELETE",
+//                            url: "/api/performances/delete_file",
+//                            success: function () {
+//                                console.log("ok");
+//                            }
+//                        });
+//                    }, 3000);
 
                 } else {
                     console.log("nothing");

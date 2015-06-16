@@ -6,8 +6,8 @@ require 'yaml'
 class Api::PerformancesController < Api::Base
   def index
     render json: { result: "OK" }
-    #    Slack.chat_postMessage(text: "この内容が送られています。#{params}", username: 'Push Notification', channel: '#general')
-    #    PerformanceMailer.send_information.deliver_now
+    Slack.chat_postMessage(text: "この内容が送られています。#{params}", username: 'Push Notification', channel: '#general')
+    PerformanceMailer.send_information.deliver_now
 
     begin
       twcli = Twitter::REST::Client.new do |config|
@@ -18,6 +18,7 @@ class Api::PerformancesController < Api::Base
       end
 
       vt = VoiceTextAPI.new('wc3vvzk2215jna4b')
+#      twcli.update("test投稿")
 
       twcli.home_timeline({"count"=>1}).each do |tweet|
         speaker = ["haruka", "hikari", "takeru"][rand(3)]
@@ -40,23 +41,28 @@ class Api::PerformancesController < Api::Base
         end
 
         if emotion == nil then
-          wav = vt.tts(text, :"#{speaker}")
+          @wav = vt.tts(text, :"#{speaker}")
         else
-          wav = vt.tts(text, :"#{speaker}",emotion: :"#{emotion}", emotion_level: "#{emolevel}")
+          @wav = vt.tts(text, :"#{speaker}",emotion: :"#{emotion}", emotion_level: "#{emolevel}")
         end
-        
-        wav.force_encoding('utf-8')
-        path = "/Users/WataruSato/Downloads/sox-14.4.2/play -"
-        Open3.capture3(path, stdin_data: wav)
       end
-
     rescue
       print "RuntimeError: ", $!, "\n";
     end
-
+    
+    #File.binwrite("hoge.wav", @wav)
+    
   end
 
   def callback
     render text: "OK"
   end
+  
+  private
+  def send_data(data)
+    send_data(data,
+      :disposition => "inline",
+      :type => "wav")
+  end
 end
+

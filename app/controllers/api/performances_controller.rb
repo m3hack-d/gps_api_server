@@ -18,7 +18,7 @@ class Api::PerformancesController < Api::Base
       end
 
       vt = VoiceTextAPI.new('wc3vvzk2215jna4b')
-      twcli.update("ヤッホー")
+      twcli.update("ヤッホー３")
 
       twcli.home_timeline({"count"=>1}).each do |tweet|
         speaker = ["haruka", "hikari", "takeru"][rand(3)]

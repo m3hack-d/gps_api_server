@@ -6,7 +6,4 @@ Rails.application.routes.draw do
       get :callback, on: :collection
     end
   end
-
-  namespace :admin do
-  end
 end

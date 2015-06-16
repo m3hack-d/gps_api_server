@@ -18,11 +18,11 @@ class Api::PerformancesController < Api::Base
       end
 
       vt = VoiceTextAPI.new('wc3vvzk2215jna4b')
-#      twcli.update("test投稿")
+      twcli.update("ヤッホー")
 
       twcli.home_timeline({"count"=>1}).each do |tweet|
         speaker = ["haruka", "hikari", "takeru"][rand(3)]
-        text = "#{tweet.text}"
+        text = "#{tweet.text}" + "怒!"
 
         if /[!！]/ =~ text then
           emolevel = "2"
@@ -45,24 +45,17 @@ class Api::PerformancesController < Api::Base
         else
           @wav = vt.tts(text, :"#{speaker}",emotion: :"#{emotion}", emotion_level: "#{emolevel}")
         end
+        
+        f = File.open("public/videos/hoge.wav", "wb")
+        f.write(@wav)
+        f.close
       end
     rescue
       print "RuntimeError: ", $!, "\n";
     end
-    
-    #File.binwrite("hoge.wav", @wav)
-    
   end
 
   def callback
     render text: "OK"
   end
-  
-  private
-  def send_data(data)
-    send_data(data,
-      :disposition => "inline",
-      :type => "wav")
-  end
 end
-

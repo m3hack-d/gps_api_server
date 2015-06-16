@@ -3,7 +3,8 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :performances do
-      get :callback, on: :collection
+      get :callback, :exist_file, on: :collection
+      delete :delete_file, on: :collection
     end
   end
 end

@@ -16,12 +16,14 @@ class Api::PerformancesController < Api::Base
   end
 
   def delete_file
-    File.delete("public/audios/hoge.wav") if File.exist?("public/audios/hoge.wav")
+    path = Rails.root.join("public", "audios", "hoge.wav")
+    File.delete(path) if File.exist?(path)
     render text: "OK"
   end
 
   def exist_file
-    if File.exist?("public/audios/hoge.wav")
+    path = Rails.root.join("public", "audios", "hoge.wav")
+    if File.exist?(path)
       render json: { result: true }
     else
       render json: { result: false }

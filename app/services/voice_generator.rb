@@ -20,7 +20,8 @@ class VoiceGenerator
       wav = @voice.tts(text, speaker)
     end
 
-    f = File.open("public/audios/hoge.wav", "wb")
+    path = Rails.root.join("public", "audios", "hoge.wav")
+    f = File.open(path, "wb")
     f.write(wav)
     f.close
   rescue
